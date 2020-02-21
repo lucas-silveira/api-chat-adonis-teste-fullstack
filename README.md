@@ -10,13 +10,15 @@ This is the boilerplate for creating an API server in AdonisJs, it comes pre-con
 
 ## Setup
 
-Use the adonis command to install the blueprint
+AdonisJs CLI is a command line tool to help you install AdonisJs.
 
-```bash
-adonis new yardstick --api-only
+Install it globally via npm like so:
+
+```js
+npm i -g @adonisjs/cli
 ```
 
-or manually clone the repo and then run `npm install`.
+Clone the repo and then run `npm install` or `yarn`.
 
 
 ### Migrations
@@ -25,4 +27,12 @@ Run the following command to run startup migrations.
 
 ```js
 adonis migration:run
+```
+
+### Initialize Server
+
+Run the following command to start the HTTP Server:
+
+```js
+adonis serve --dev
 ```
