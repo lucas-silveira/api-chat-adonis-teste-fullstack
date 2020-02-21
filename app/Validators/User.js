@@ -5,10 +5,6 @@ class User {
     return this.ctx.response.send(errorMessages)
   }
 
-  get validateAll () {
-    return true
-  }
-
   get rules () {
     return {
       username: 'required|string|unique:users',
