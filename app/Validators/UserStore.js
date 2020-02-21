@@ -1,13 +1,13 @@
 'use strict'
 
-class User {
+class UserStore {
   async fails (errorMessages) {
     return this.ctx.response.send(errorMessages)
   }
 
   get rules () {
     return {
-      username: 'required|string|unique:users',
+      name: 'required|string',
       email: 'required|email|unique:users',
       password: 'required|confirmed',
       address: 'string',
@@ -17,9 +17,8 @@ class User {
 
   get messages () {
     return {
-      'username.required': 'Você precisa informar um usuário.',
-      'username.string': 'O formato do nome é inválido.',
-      'username.unique': 'O usuário já está sendo utilizado.',
+      'name.required': 'Você precisa informar um usuário.',
+      'name.string': 'O formato do nome é inválido.',
       'email.required': 'Você precisa informar um email.',
       'email.email': 'O formato do email é inválido.',
       'email.unique': 'O email já está sendo utilizado.',
@@ -31,4 +30,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = UserStore
