@@ -7,5 +7,5 @@ Route.post('users', 'UserController.store').validator('UserStore')
 Route.post('sessions', 'SessionController.store').validator('Session')
 Route.post('forgot_password', 'ForgotPasswordController.store').validator('ForgotPasswordStore')
 
-Route.put('users', 'UserController.update').middleware(['auth']).validator('UserUpdate')
 Route.put('forgot_password', 'ForgotPasswordController.update').validator('ForgotPasswordUpdate')
+Route.put('users', 'UserController.update').middleware(['auth']).validator('UserUpdate')

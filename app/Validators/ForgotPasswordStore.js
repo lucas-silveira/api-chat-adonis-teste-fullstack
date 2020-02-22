@@ -2,7 +2,7 @@
 
 class ForgotPasswordStore {
   async fails (errorMessages) {
-    return this.ctx.response.send(errorMessages)
+    return this.ctx.response.status(400).send({ error: errorMessages[0].message })
   }
 
   get rules () {
@@ -16,7 +16,6 @@ class ForgotPasswordStore {
     return {
       'email.required': 'Você precisa informar um email.',
       'email.email': 'O formato do email é inválido.',
-      'email.unique': 'O email já está sendo utilizado.',
       'redirect_url.required': 'Você precisa informar uma url de redirecionamento.',
       'redirect_url.string': 'O formato da url é inválido.'
     }

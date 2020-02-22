@@ -2,7 +2,7 @@
 
 class UserStore {
   async fails (errorMessages) {
-    return this.ctx.response.send(errorMessages)
+    return this.ctx.response.status(400).send({ error: errorMessages[0].message })
   }
 
   get rules () {
@@ -17,7 +17,7 @@ class UserStore {
 
   get messages () {
     return {
-      'name.required': 'Você precisa informar um usuário.',
+      'name.required': 'Você precisa informar um nome.',
       'name.string': 'O formato do nome é inválido.',
       'email.required': 'Você precisa informar um email.',
       'email.email': 'O formato do email é inválido.',
