@@ -11,13 +11,15 @@ class SessionController {
 
     if (!userExists) return response.status(400).send({ error: 'O email não existe.' })
 
+    const { id, name, address, phone } = userExists
+
     const passwordIsCorrect = await Hash.verify(password, userExists.password)
 
     if (!passwordIsCorrect) return response.status(400).send({ error: 'A senha está incorreta.' })
 
     const token = await auth.attempt(email, password)
 
-    return token
+    return { token, user: { id, name, email, address, phone } }
   }
 }
 
