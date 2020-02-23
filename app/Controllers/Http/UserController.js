@@ -1,12 +1,21 @@
 'use strict'
 
+const Helpers = use('Helpers')
 const User = use('App/Models/User')
 
 class UserController {
-  async store ({ request }) {
-    const data = request.only(['name', 'email', 'password', 'address', 'phone'])
+  async store ({ request, response }) {
+    const upload = request.file('file', { size: '2mb' })
+    const fileName = `${Date.now()}.${upload.subtype}`
 
-    const user = await User.create(data)
+    await upload.move(Helpers.tmpPath('uploads'), {
+      name: fileName
+    })
+
+    if (!upload.moved()) return response.status(500).send({ error: 'Ops! Algo deu errado no upload da imagem.' })
+
+    const data = request.only(['name', 'email', 'password', 'address', 'phone'])
+    const user = await User.create({ ...data, file: fileName })
 
     return user
   }
